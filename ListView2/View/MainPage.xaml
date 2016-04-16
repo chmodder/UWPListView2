@@ -1,0 +1,63 @@
+﻿<Page
+    x:Class="ListView2.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ListView2"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModel="using:ListView2.ViewModel"
+    mc:Ignorable="d">
+
+    <!--<Page.Resources>
+        <DataTemplate x:Key="NotesDataTemplate">
+            <ItemsPanelTemplate>
+                <TextBlock />
+            </ItemsPanelTemplate>
+        </DataTemplate>
+    </Page.Resources>-->
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+        <Grid.DataContext>
+            <viewModel:NoteViewModel/>
+        </Grid.DataContext>
+
+        <ListView  Header="Notes"
+                   HorizontalAlignment="Left" 
+                   Height="341"
+                   Width="228"
+                   VerticalAlignment="Top"
+                   Margin="163,208,0,0"
+                   ItemsSource="{Binding Notes}">
+            
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding NoteText, Mode=TwoWay}"/>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+
+        </ListView>
+
+
+        <TextBlock HorizontalAlignment="Left"
+                   Margin="172,81,0,0"
+                   TextWrapping="Wrap"
+                   Text="My Notes"
+                   VerticalAlignment="Top"
+                   FontSize="35"
+                   FontFamily="Segoe UI"/>
+
+        <TextBox x:Name="TbxNoteContent" HorizontalAlignment="Left"
+                 Margin="571,147,0,0"
+                 TextWrapping="Wrap"
+                 VerticalAlignment="Top"
+                 Width="376"/>
+
+        <Button Content="Add"
+                HorizontalAlignment="Left"
+                Margin="597,249,0,0"
+                VerticalAlignment="Top"
+                Command="{Binding AddNoteCommand}"
+                CommandParameter="{Binding Text, ElementName=TbxNoteContent}"/>
+    </Grid>
+</Page>
