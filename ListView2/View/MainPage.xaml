@@ -28,16 +28,31 @@
                    Width="228"
                    VerticalAlignment="Top"
                    Margin="163,208,0,0"
-                   ItemsSource="{Binding Notes}">
-            
+                   ItemsSource="{Binding Notes, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+
             <ListView.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock Text="{Binding NoteText, Mode=TwoWay}"/>
+                <DataTemplate x:Name="MyDataTemplate">
+                    <StackPanel Orientation="Horizontal">
+
+                        <TextBlock x:Name="TbxblListItem" Text="{Binding NoteText}"/>
+
+                        <Button Command="{Binding DeleteNoteCommand}" 
+                                CommandParameter="{Binding ElementName=TbxblListItem}">
+                            <Button.DataContext>
+                                <viewModel:NoteViewModel/>
+                            </Button.DataContext>
+                            <Button.Content>
+                                <SymbolIcon Symbol="Delete" 
+                                            ToolTipService.ToolTip="Delete Note" 
+                                            HorizontalAlignment="Center" 
+                                            VerticalAlignment="Center"/>
+                            </Button.Content>
+                        </Button>
+
+                    </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
-
         </ListView>
-
 
         <TextBlock HorizontalAlignment="Left"
                    Margin="172,81,0,0"
@@ -61,3 +76,4 @@
                 CommandParameter="{Binding Text, ElementName=TbxNoteContent}"/>
     </Grid>
 </Page>
+
