@@ -18,6 +18,7 @@ namespace ListView2
 
         // Delegate for method that determines if cmd is enabled/disabled        
         private readonly Predicate<object> _targetCanExecuteMethod;
+
         #endregion
 
         #region ICommand Members

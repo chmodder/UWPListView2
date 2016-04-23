@@ -10,6 +10,7 @@ namespace ListView2.ViewModel
         private ObservableCollection<Note> _notes;
         private RelayCommand _addNoteCommand;
         private RelayCommandGenericType<Note> _deleteNoteCommand;
+        private RelayCommand _deleteAllNotesCommand;
         #endregion
 
         #region Constructors
@@ -17,10 +18,11 @@ namespace ListView2.ViewModel
         {
             //adds sample data to Notes property (ObservableCollection<Note>)
             Notes = new ObservableCollection<Note>() { new Note("Sample text 1"), new Note("Sample text 2") };
-                        
+
             //Button command methods are added to delegates
             AddNoteCommand = new RelayCommand(DoAddNote);
             DeleteNoteCommand = new RelayCommandGenericType<Note>(DoDeleteNote);
+            DeleteAllNotesCommand = new RelayCommand(DoDeleteAllNotes);
         }
         #endregion
 
@@ -30,6 +32,8 @@ namespace ListView2.ViewModel
         public RelayCommand AddNoteCommand { get { return _addNoteCommand; } set { _addNoteCommand = value; } }
 
         public RelayCommandGenericType<Note> DeleteNoteCommand { get { return _deleteNoteCommand; } set { _deleteNoteCommand = value; } }
+
+        public RelayCommand DeleteAllNotesCommand { get { return _deleteAllNotesCommand; } set { _deleteAllNotesCommand = value; } }
 
         #endregion
 
@@ -47,6 +51,11 @@ namespace ListView2.ViewModel
         private void DoDeleteNote(Note note)
         {
             this.Notes.Remove(note);
+        }
+
+        private void DoDeleteAllNotes(object obj)
+        {
+            this.Notes.Clear();
         }
         #endregion
     }

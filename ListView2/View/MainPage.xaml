@@ -8,13 +8,6 @@
     xmlns:viewModel="using:ListView2.ViewModel"
     mc:Ignorable="d">
 
-    <!--<Page.Resources>
-        <DataTemplate x:Key="NotesDataTemplate">
-            <ItemsPanelTemplate>
-                <TextBlock />
-            </ItemsPanelTemplate>
-        </DataTemplate>
-    </Page.Resources>-->
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
@@ -39,14 +32,14 @@
 
                         <Button Command="{Binding DataContext.DeleteNoteCommand, ElementName=LvNoteList}" 
                                 CommandParameter="{Binding}">
-                            
+
                             <Button.Content>
                                 <SymbolIcon Symbol="Delete" 
                                             ToolTipService.ToolTip="Delete Note" 
                                             HorizontalAlignment="Center" 
                                             VerticalAlignment="Center"/>
                             </Button.Content>
-                            
+
                         </Button>
 
                     </StackPanel>
@@ -62,18 +55,28 @@
                    FontSize="35"
                    FontFamily="Segoe UI"/>
 
-        <TextBox x:Name="TbxNoteContent" HorizontalAlignment="Left"
-                 Margin="571,147,0,0"
+        <StackPanel Margin="466,81,240,66">
+            <TextBox x:Name="TbxNoteContent" HorizontalAlignment="Left"
+                 Margin="100,121,0,0"
                  TextWrapping="Wrap"
                  VerticalAlignment="Top"
                  Width="376"/>
 
-        <Button Content="Add"
+            <StackPanel Orientation="Horizontal">
+                <Button Content="Delete All Notes"
                 HorizontalAlignment="Left"
-                Margin="597,249,0,0"
+                Margin="100,10,200,0"
+                VerticalAlignment="Top"
+                Command="{Binding DeleteAllNotesCommand}"/>
+
+                <Button Content="Add"
+                HorizontalAlignment="left"
+                Margin="0,10,0,0"
                 VerticalAlignment="Top"
                 Command="{Binding AddNoteCommand}"
                 CommandParameter="{Binding Text, ElementName=TbxNoteContent}"/>
+            </StackPanel>
+        </StackPanel>
     </Grid>
 </Page>
 
