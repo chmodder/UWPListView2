@@ -22,7 +22,8 @@
             <viewModel:NoteViewModel/>
         </Grid.DataContext>
 
-        <ListView  Header="Notes"
+        <ListView  x:Name="LvNoteList"
+                   Header="Notes"
                    HorizontalAlignment="Left" 
                    Height="341"
                    Width="228"
@@ -36,17 +37,16 @@
 
                         <TextBlock x:Name="TbxblListItem" Text="{Binding NoteText}"/>
 
-                        <Button Command="{Binding DeleteNoteCommand}" 
-                                CommandParameter="{Binding ElementName=TbxblListItem}">
-                            <Button.DataContext>
-                                <viewModel:NoteViewModel/>
-                            </Button.DataContext>
+                        <Button Command="{Binding DataContext.DeleteNoteCommand, ElementName=LvNoteList}" 
+                                CommandParameter="{Binding}">
+                            
                             <Button.Content>
                                 <SymbolIcon Symbol="Delete" 
                                             ToolTipService.ToolTip="Delete Note" 
                                             HorizontalAlignment="Center" 
                                             VerticalAlignment="Center"/>
                             </Button.Content>
+                            
                         </Button>
 
                     </StackPanel>

@@ -5,10 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace ListView2.Model
+namespace ListView2
 {
     class RelayCommand : ICommand
     {
+        #region Instance Fields
         // Event that fires when the enabled/disabled state of the cmd changes
         public event EventHandler CanExecuteChanged;
 
@@ -17,7 +18,9 @@ namespace ListView2.Model
 
         // Delegate for method that determines if cmd is enabled/disabled        
         private readonly Predicate<object> _targetCanExecuteMethod;
+        #endregion
 
+        #region ICommand Members
         public bool CanExecute(object parameter)
         {
             return _targetCanExecuteMethod == null || _targetCanExecuteMethod(parameter);
@@ -39,5 +42,6 @@ namespace ListView2.Model
         {
             if (CanExecuteChanged != null) CanExecuteChanged(this, EventArgs.Empty);
         }
+        #endregion
     }
 }

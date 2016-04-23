@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace ListView2.Model
+namespace ListView2
 {
     class Notification : INotifyPropertyChanged
     {
