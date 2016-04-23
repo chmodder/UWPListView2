@@ -37,8 +37,8 @@ namespace ListView2.ViewModel
 
         private void DoAddNote(object obj)
         {
-            var newItem = obj as string;
-            if (!string.IsNullOrEmpty(newItem))
+            string noteText = obj as string;
+            if (!string.IsNullOrEmpty(noteText))
             {
                 this.Notes.Add(new Note(noteText));
             }
